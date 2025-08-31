@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #e11d48;
+  --color-secondary: #f43f5e;
+  --color-accent: #fb7185;
+  --color-background: #ffffff;
+  --color-text: #111827;
+  --font-hebrew: 'Heebo';
+  --font-english: 'Inter';
+  --max-width: 1280px;
+  --section-padding: 5rem;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-hebrew), var(--font-english), system-ui, sans-serif;
+  }
+  
+  html[dir="rtl"] {
+    font-family: var(--font-hebrew), system-ui, sans-serif;
+  }
+  
+  html[dir="ltr"] {
+    font-family: var(--font-english), system-ui, sans-serif;
+  }
+  
+  * {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    color: var(--color-text);
+    background-color: var(--color-background);
+  }
+}
+
+@layer components {
+  .rtl {
+    direction: rtl;
+    text-align: right;
+  }
+  
+  .ltr {
+    direction: ltr;
+    text-align: left;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
+  }
+  
+  /* Smooth animations */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Focus styles */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2;
+  }
+  
+  /* Button hover effects */
+  .btn-hover {
+    @apply transition-all duration-300 transform hover:scale-105 active:scale-95;
+  }
+  
+  /* Image hover effects */
+  .img-hover {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+  
+  /* Text selection */
+  ::selection {
+    @apply bg-rose-100 text-rose-900;
+  }
+  
+  /* Loading spinner */
+  .spinner {
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #e11d48;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+}
+
+/* RTL fixes for specific components */
+[dir="rtl"] .space-x-reverse > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1;
+}
+
+[dir="rtl"] .divide-x-reverse > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-x-reverse: 1;
+}
+
+/* Ensure proper font rendering */
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: 'Heebo Variable', 'Inter Variable', system-ui, sans-serif;
+  }
+}
