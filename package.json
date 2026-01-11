@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "start": "vite preview",
     "build": "vite build",
+    "start": "npx serve -s dist -p 8080",
     "lint": "eslint .",
     "preview": "vite preview"
   },
